@@ -1,7 +1,7 @@
 ---
 from: human
 to: lead
-type: decision
+type: info
 status: open
 priority: normal
 created: 2026-11-13T11:05:00Z

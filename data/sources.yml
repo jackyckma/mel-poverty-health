@@ -1,5 +1,5 @@
 # Instance sources configuration (JSON-compatible YAML subset).
-# Replace example entries at instantiation. Keep secrets out of this file.
+# Keep secrets out of this file. Values are single-line; do not use the hash character inside values.
 #
 # Schema per source:
 #   id:          stable slug (folder name under data/raw/)
@@ -9,6 +9,13 @@
 #   enabled:     true | false
 #   example:     true if this is a non-mandate demo entry
 #   notes:       optional
+#
+# Owner approved Scout sources on 2026-11-13 (board human-to-collector 001).
+# All mandate entries below are enabled: false until licence and endpoint are confirmed
+# from the primary page. The Collector session cannot reach these hosts (proxy/DNS),
+# see board collector-to-lead 001. Narrative references (not fetch entries):
+#   - London Health Profile 2026 (London Datastore 2z1kq): mostly PDF; reference only.
+#   - Measure of America, A Portrait of Los Angeles County 2026: one-off; terms of use unchecked.
 
 sources:
   - id: example-jsonplaceholder
@@ -18,3 +25,43 @@ sources:
     enabled: false
     example: true
     notes: "Disabled by default. Enable only for connectivity tests. Not part of any MEL mandate."
+
+  - id: cdc-places-place-2025
+    name: "CDC PLACES: Place data, GIS-friendly format, 2025 release (vgc8-iyc4)"
+    url: "https://data.cdc.gov/resource/vgc8-iyc4.csv?$limit=50000"
+    format: csv
+    enabled: false
+    example: false
+    notes: "Scout S1. Geography: US Census places (city proper). Update: annual (2025 release Dec 2025; next expected Dec 2026). Licence: expected US government public domain, NOT confirmed from primary page (data.cdc.gov unreachable from Collector session). Endpoint unverified. Full table is all US places (large); agree a city filter with Curator before enabling to avoid repo bloat. Model-based estimates; PA gaps for some measures."
+
+  - id: census-acs1-2025-poverty-uninsured
+    name: "US Census ACS 1-year 2025 subject tables: poverty rate (S1701) and uninsured rate (S2701) by place"
+    url: "https://api.census.gov/data/2025/acs/acs1/subject?get=NAME,S1701_C03_001E,S1701_C03_001M,S2701_C05_001E,S2701_C05_001M&for=place:*"
+    format: json
+    enabled: false
+    example: false
+    notes: "Scout S2. Geography: places with 65k+ population (city proper). Update: annual (2025 1-year scheduled 2026-10-29, live status unverified). Licence: expected public domain plus Census API terms of service, NOT confirmed (api.census.gov and census.gov unreachable). Variable codes unverified. No API key used (low daily limit is fine for one call). 2025 health-insurance question changed: series break vs 2024."
+
+  - id: eurostat-urb-clivcon
+    name: "Eurostat City statistics: living conditions by city (urb_clivcon)"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/urb_clivcon?format=JSON&lang=EN"
+    format: json
+    enabled: false
+    example: false
+    notes: "Scout S3. Geography: EU cities and greater cities (label which). Update: irregular (last update May 2024; collection round 2023-2025). Licence: expected Eurostat reuse policy / CC BY 4.0, NOT confirmed (ec.europa.eu unreachable). Endpoint unverified. Many city/variable gaps; show them. Other urb_* tables (e.g. urb_cpop1) to add once this one works."
+
+  - id: eurostat-hlth-silc-08
+    name: "Eurostat EU-SILC: self-reported unmet need for medical examination by income quintile (hlth_silc_08)"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/hlth_silc_08?format=JSON&lang=EN"
+    format: json
+    enabled: false
+    example: false
+    notes: "Scout S4 (Owner message calls it S5). NATIONAL CONTEXT LAYER ONLY, not city level. Update: annual (next update planned Dec 2026). Licence: expected CC BY 4.0, NOT confirmed (ec.europa.eu unreachable). Endpoint unverified."
+
+  - id: ohid-fingertips-life-expectancy
+    name: "OHID Fingertips API: life expectancy at birth, England upper-tier local authorities (London boroughs)"
+    url: "https://fingertips.phe.org.uk/api/all_data/csv/by_indicator_id?indicator_ids=90366&child_area_type_id=502"
+    format: csv
+    enabled: false
+    example: false
+    notes: "Scout S6. Geography: London boroughs / England LAs (filter to London). Update: rolling. Licence: expected Open Government Licence v3, NOT confirmed (fingertips.phe.org.uk unreachable). Indicator id 90366 and area type 502 are unverified guesses; deprivation-decile indicator still to identify."
