@@ -1,19 +1,21 @@
 {
   "title": "MEL dashboard",
-  "last_updated": null,
-  "built_at": null,
-  "input_fresh_at": null,
-  "stale": true,
-  "stale_after_hours": 48,
+  "last_updated": "2026-11-13T12:41:54Z",
+  "built_at": "2026-11-13T12:41:55Z",
+  "input_fresh_at": "2026-11-13T12:41:54Z",
+  "stale": false,
+  "stale_after_hours": 48.0,
   "summary": {
-    "row_count": 0,
-    "sources": []
+    "row_count": 4,
+    "sources": [
+      "cdc-places-place-2025"
+    ]
   },
   "sections": [
     {
       "id": "overview",
       "title": "Overview",
-      "body": "Placeholder section — Curator configures titles and copy per instance."
+      "body": "Placeholder section \u2014 Curator configures titles and copy per instance."
     }
   ],
   "charts": [
@@ -21,8 +23,12 @@
       "id": "rows-by-source",
       "title": "Processed rows by source",
       "type": "bar",
-      "labels": [],
-      "values": []
+      "labels": [
+        "cdc-places-place-2025"
+      ],
+      "values": [
+        4
+      ]
     }
   ]
 }

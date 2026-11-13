@@ -1,4 +1,40 @@
 {
-  "updated_at": null,
-  "sources": {}
+  "updated_at": "2026-11-13T12:41:55Z",
+  "sources": {
+    "example-jsonplaceholder": {
+      "last_success": null,
+      "last_error": null,
+      "last_attempt": "2026-11-13T12:41:53Z",
+      "skipped": "disabled"
+    },
+    "cdc-places-place-2025": {
+      "last_success": "2026-11-13T12:41:54Z",
+      "last_error": null,
+      "last_attempt": "2026-11-13T12:41:53Z",
+      "last_path": "data/raw/cdc-places-place-2025/20261113T124153Z.csv"
+    },
+    "census-acs1-2025-poverty-uninsured": {
+      "last_success": null,
+      "last_error": null,
+      "last_attempt": "2026-11-13T12:41:54Z",
+      "skipped": "disabled"
+    },
+    "eurostat-urb-clivcon": {
+      "last_success": null,
+      "last_error": null,
+      "last_attempt": "2026-11-13T12:41:54Z",
+      "skipped": "disabled"
+    },
+    "eurostat-hlth-silc-08": {
+      "last_success": null,
+      "last_error": "HTTPError: HTTP Error 400: Bad Request",
+      "last_attempt": "2026-11-13T12:41:54Z"
+    },
+    "ohid-fingertips-life-expectancy": {
+      "last_success": null,
+      "last_error": null,
+      "last_attempt": "2026-11-13T12:41:55Z",
+      "skipped": "disabled"
+    }
+  }
 }
