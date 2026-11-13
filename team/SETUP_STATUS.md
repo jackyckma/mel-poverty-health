@@ -11,12 +11,12 @@ Onboarding and later chats **update this file** after each step so a new session
 | Placeholders filled (`README.md`, `team/mandate.md`) | [Lead-chat] | done | 2026-11-13. Proposed defaults (city definition, out of scope) await Owner confirmation |
 | Roles activated (instance role docs) | [Lead-chat] + [Owner] | done | Lead+PCM, Collector, Curator+Analyst, Scout; all daily |
 | Sources configured (`data/sources.yml`) | [Lead-chat] + [Owner] | pending | Owner gave no initial sources; Scout proposes, Owner approves. Example entry stays disabled |
-| Actions → Workflow permissions = Read repository contents (read-only) | [Owner] or [Admin] | pending | Do **not** use Read and write; jobs set their own `permissions:` |
-| Pages → Source = GitHub Actions | [Owner] or [Admin] | pending | Settings → Pages |
+| Actions → Workflow permissions = Read repository contents (read-only) | [Owner] or [Admin] | done | Owner reported done 2026-11-13 (not independently verified by Lead-chat) |
+| Pages → Source = GitHub Actions | [Owner] or [Admin] | done | Owner reported done 2026-11-13 (not independently verified by Lead-chat) |
 | `fetch.yml` schedule decision | [Owner] | pending | Leave commented until sources trusted |
-| First-run test task created in Claude UI (Repository = this repo) | [Owner] | pending | Chat/API tasks **cannot** push (no Repository) |
+| First-run test task created in Claude UI (Repository = this repo) | [Owner] | pending | Lead paste block issued 2026-11-13. Chat/API tasks **cannot** push (no Repository) |
 | First-run: Run now → `claude/*` → Merge green → commit on `main` → Pages | [Owner] + [Lead-chat] | pending | Task UI success ≠ verified |
-| Remaining scheduled tasks created (UI); Active only after test | [Owner] | pending | Paste blocks from Lead-chat |
+| Remaining scheduled tasks created (UI); Active only after test | [Owner] | pending | Collector, Curator+Analyst, Scout blocks issued after test passes |
 | Human contact / digest path set | [Owner] | done | Owner via Lead chat; digests also in `agents/mel-lead/outputs/` |
 
 ## First-run test — if red
@@ -35,7 +35,7 @@ Onboarding and later chats **update this file** after each step so a new session
 
 ## Blockers / resume notes
 
-- Next: [Owner] sets Actions workflow permissions (read-only) and Pages source = GitHub Actions; then Lead-chat prints Scheduled Task paste blocks.
+- Next: [Owner] creates the Lead task in the Claude UI (Repository = this repo, permission Auto, not Active), clicks Run now, reports back; Lead-chat verifies `main`.
 - Sources: none enabled yet; Scout finds them after first run.
 
 ## Last updated
