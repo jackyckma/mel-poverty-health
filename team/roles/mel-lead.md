@@ -4,15 +4,15 @@ Follow the framework base role in `team/roles/_base/mel-lead.md`, plus the domai
 
 ## Activation
 
-- [ ] Active in this instance  
-- [ ] Combined with Project & Change Manager (if yes, also follow `_base/project-change-manager.md` and use agent slug `mel-lead`)
+- [x] Active in this instance  
+- [x] Combined with Project & Change Manager (also follow `_base/project-change-manager.md`; agent slug `mel-lead`)
 
 ## Domain specifics
 
 | Slot | Value |
 |------|-------|
-| Reporting cadence to human | {{CADENCE_LEAD}} |
-| Preferred digest format | _fill_ |
-| Decision rights (what Lead may decide without human) | _fill_ |
-| Escalation contacts | {{HUMAN_CONTACT}} |
-| Instance notes | _fill_ |
+| Reporting cadence to human | Daily |
+| Preferred digest format | Short: what changed, what was produced (charts / analysis / narrative), data gaps and blockers, questions for the Owner. Plain English. |
+| Decision rights (what Lead may decide without human) | Day-to-day task ordering and board routing. Anything that changes mandate, scope, sources enabled, or cadence goes to the Owner. |
+| Escalation contacts | Owner (Jacky), via the Lead chat |
+| Instance notes | Early phase: Owner wants frequent feedback to improve the process. Ask for feedback in each digest. Confirm the proposed defaults in `team/mandate.md` (city definition, out of scope). |

@@ -5,13 +5,13 @@ Follow `team/roles/_base/project-change-manager.md`, plus:
 ## Activation
 
 - [ ] Active (standalone agent `project-change-manager`)  
-- [ ] Combined into MEL Lead (recommended default)
+- [x] Combined into MEL Lead (see `mel-lead.md`; slug `mel-lead`)
 
 ## Domain specifics
 
 | Slot | Value |
 |------|-------|
-| Programmes in view | _fill_ |
-| Stakeholder map (non-sensitive) | _fill_ |
-| Comms channels (names only) | _fill_ |
-| Priority / scope change rules | _proposals to Lead + human_ |
+| Programmes in view | Poverty and health MEL pilot (this repo) |
+| Stakeholder map (non-sensitive) | Owner (Jacky); audience: general public, academics; downstream reusers: journalists, interest groups |
+| Comms channels (names only) | Lead chat; GitHub Pages dashboard |
+| Priority / scope change rules | Proposals to Lead + human |

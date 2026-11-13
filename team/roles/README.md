@@ -21,4 +21,5 @@
 
 | Combined name | Slug | Bases followed |
 |---------------|------|----------------|
-| _e.g. Lead + PCM_ | _e.g. mel-lead_ | _list bases_ |
+| Lead + PCM | mel-lead | `_base/mel-lead.md`, `_base/project-change-manager.md` |
+| Curator + Analyst | data-curator | `_base/data-curator.md`, `_base/dashboard-analyst.md` |

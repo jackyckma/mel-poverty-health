@@ -1,12 +1,12 @@
-# {{TOPIC}} — MEL agent team
+# Poverty and health — MEL agent team
 
 This is an **instance** repo for a Monitoring, Evaluation & Learning (MEL) agent team.
 
 | | |
 |--|--|
-| **Topic** | {{TOPIC}} |
-| **Purpose** | {{PURPOSE}} |
-| **Audience** | {{AUDIENCE}} |
+| **Topic** | Poverty and health |
+| **Purpose** | Monitor data and news at the junction of poverty and health, and produce charts, analysis and narratives that raise awareness of the topic, using honest and proper methods. |
+| **Audience** | Interested general public; academics working in this area |
 | **Framework version** | see `FRAMEWORK_VERSION` |
 
 ## Start here
@@ -17,7 +17,7 @@ This is an **instance** repo for a Monitoring, Evaluation & Learning (MEL) agent
 - Operator guide (plain English): [`framework/docs/OPERATING_GUIDE.md`](framework/docs/OPERATING_GUIDE.md)
 - Dashboard (GitHub Pages): [`docs/`](docs/)
 
-Talk only to the **MEL Lead**. Human instructions go on the board as `from: human` (see process + operating guide). Digests land where `{{HUMAN_CONTACT}}` says (often under `agents/mel-lead/outputs/`).
+Talk only to the **MEL Lead**. Human instructions go on the board as `from: human` (see process + operating guide). The Owner (Jacky) is contacted in the Lead chat; daily digests are also saved under `agents/mel-lead/outputs/`.
 
 ## This repo and the framework
 
@@ -27,7 +27,12 @@ Framework design notes and bootstrap prompts live under `framework/`. Instantiat
 
 ## Active roles
 
-{{ACTIVE_ROLES}}
+- MEL Lead + Project & Change Manager (combined, slug `mel-lead`) — daily
+- Data Collector (slug `data-collector`) — daily
+- Data Curator + Dashboard Analyst (combined, slug `data-curator`) — daily
+- Scout (slug `scout`) — daily
+
+More roles (e.g. Narrative Designer) can be added later.
 
 ## Secrets
 
