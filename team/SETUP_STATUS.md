@@ -8,16 +8,16 @@ Onboarding and later chats **update this file** after each step so a new session
 | Claude + GitHub access for Owner | [Admin] / [Owner] | done | Lead-chat can read/write `jackyckma/mel-poverty-health` via GitHub connector |
 | Instance repo created from template | [Lead-chat] or [Owner] | done | `jackyckma/mel-poverty-health`, created by Owner via Use this template link (2026-11-13) |
 | Visibility chosen (public / private) | [Owner] | done | Public. Topic: poverty and health |
-| Placeholders filled (`README.md`, `team/mandate.md`) | [Lead-chat] | pending | Via connector write |
-| Roles activated (instance role docs) | [Lead-chat] + [Owner] | pending | |
-| Sources configured (`data/sources.yml`) | [Lead-chat] + [Owner] | pending | Examples disabled until reviewed |
+| Placeholders filled (`README.md`, `team/mandate.md`) | [Lead-chat] | done | 2026-11-13. Proposed defaults (city definition, out of scope) await Owner confirmation |
+| Roles activated (instance role docs) | [Lead-chat] + [Owner] | done | Lead+PCM, Collector, Curator+Analyst, Scout; all daily |
+| Sources configured (`data/sources.yml`) | [Lead-chat] + [Owner] | pending | Owner gave no initial sources; Scout proposes, Owner approves. Example entry stays disabled |
 | Actions → Workflow permissions = Read repository contents (read-only) | [Owner] or [Admin] | pending | Do **not** use Read and write; jobs set their own `permissions:` |
 | Pages → Source = GitHub Actions | [Owner] or [Admin] | pending | Settings → Pages |
 | `fetch.yml` schedule decision | [Owner] | pending | Leave commented until sources trusted |
 | First-run test task created in Claude UI (Repository = this repo) | [Owner] | pending | Chat/API tasks **cannot** push (no Repository) |
 | First-run: Run now → `claude/*` → Merge green → commit on `main` → Pages | [Owner] + [Lead-chat] | pending | Task UI success ≠ verified |
 | Remaining scheduled tasks created (UI); Active only after test | [Owner] | pending | Paste blocks from Lead-chat |
-| Human contact / digest path set | [Owner] | pending | `{{HUMAN_CONTACT}}` |
+| Human contact / digest path set | [Owner] | done | Owner via Lead chat; digests also in `agents/mel-lead/outputs/` |
 
 ## First-run test — if red
 
@@ -28,11 +28,15 @@ Onboarding and later chats **update this file** after each step so a new session
 
 ## Active roles (fill during setup)
 
-- 
+- MEL Lead + PCM (`mel-lead`), daily
+- Data Collector (`data-collector`), daily
+- Data Curator + Dashboard Analyst (`data-curator`), daily
+- Scout (`scout`), daily
 
 ## Blockers / resume notes
 
-- Next: mandate round (purpose, audience, decisions, scope, out of scope, sources notes, roles, cadences, human contact).
+- Next: [Owner] sets Actions workflow permissions (read-only) and Pages source = GitHub Actions; then Lead-chat prints Scheduled Task paste blocks.
+- Sources: none enabled yet; Scout finds them after first run.
 
 ## Last updated
 
