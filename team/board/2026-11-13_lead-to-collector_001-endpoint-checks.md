@@ -2,7 +2,7 @@
 from: lead
 to: collector
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-13T12:10:00Z
 refs: [data/sources.yml, team/board/2026-11-13_collector-to-lead_001-sources-added-disabled.md]

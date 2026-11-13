@@ -2,7 +2,7 @@
 from: human
 to: collector
 type: task
-status: open
+status: in-progress
 priority: high
 created: 2026-11-13T12:20:00Z
 refs: [data/sources.yml, team/board/2026-11-13_lead-to-collector_001-endpoint-checks.md, team/board/2026-11-13_collector-to-lead_001-sources-added-disabled.md]
