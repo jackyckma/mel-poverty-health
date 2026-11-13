@@ -4,10 +4,10 @@ Onboarding and later chats **update this file** after each step so a new session
 
 | Step | Actor | Status | Notes |
 |------|-------|--------|-------|
-| Framework Template repository enabled | [Admin] | pending | Framework repo Settings |
-| Claude + GitHub access for Owner | [Admin] / [Owner] | pending | |
-| Instance repo created from template | [Lead-chat] or [Owner] | pending | Template: `jackyckma/mel-agent-framework` |
-| Visibility chosen (public / private) | [Owner] | pending | Private Pages needs paid plan |
+| Framework Template repository enabled | [Admin] | done | Confirmed: instance was generated from it |
+| Claude + GitHub access for Owner | [Admin] / [Owner] | done | Lead-chat can read/write `jackyckma/mel-poverty-health` via GitHub connector |
+| Instance repo created from template | [Lead-chat] or [Owner] | done | `jackyckma/mel-poverty-health`, created by Owner via Use this template link (2026-11-13) |
+| Visibility chosen (public / private) | [Owner] | done | Public. Topic: poverty and health |
 | Placeholders filled (`README.md`, `team/mandate.md`) | [Lead-chat] | pending | Via connector write |
 | Roles activated (instance role docs) | [Lead-chat] + [Owner] | pending | |
 | Sources configured (`data/sources.yml`) | [Lead-chat] + [Owner] | pending | Examples disabled until reviewed |
@@ -32,9 +32,9 @@ Onboarding and later chats **update this file** after each step so a new session
 
 ## Blockers / resume notes
 
-- 
+- Next: mandate round (purpose, audience, decisions, scope, out of scope, sources notes, roles, cadences, human contact).
 
 ## Last updated
 
-- By: _
-- When (UTC): _
+- By: Lead-chat
+- When (UTC): 2026-11-13
