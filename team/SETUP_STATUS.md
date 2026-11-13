@@ -12,11 +12,11 @@ Onboarding and later chats **update this file** after each step so a new session
 | Roles activated (instance role docs) | [Lead-chat] + [Owner] | done | Lead+PCM, Collector, Curator+Analyst, Scout; all daily |
 | Sources configured (`data/sources.yml`) | [Lead-chat] + [Owner] | pending | Owner gave no initial sources; Scout proposes, Owner approves. Example entry stays disabled |
 | Actions → Workflow permissions = Read repository contents (read-only) | [Owner] or [Admin] | done | Owner reported done 2026-11-13 (not independently verified by Lead-chat) |
-| Pages → Source = GitHub Actions | [Owner] or [Admin] | done | Owner reported done 2026-11-13 (not independently verified by Lead-chat) |
+| Pages → Source = GitHub Actions | [Owner] or [Admin] | done | Owner reported; dashboard shell loads at https://jackyckma.github.io/mel-poverty-health/ |
 | `fetch.yml` schedule decision | [Owner] | pending | Leave commented until sources trusted |
-| First-run test task created in Claude UI (Repository = this repo) | [Owner] | pending | Lead paste block issued 2026-11-13. Chat/API tasks **cannot** push (no Repository) |
-| First-run: Run now → `claude/*` → Merge green → commit on `main` → Pages | [Owner] + [Lead-chat] | pending | Task UI success ≠ verified |
-| Remaining scheduled tasks created (UI); Active only after test | [Owner] | pending | Collector, Curator+Analyst, Scout blocks issued after test passes |
+| First-run test task created in Claude UI (Repository = this repo) | [Owner] | done | Lead task created with Repository set; ran 2026-11-13 |
+| First-run: Run now → `claude/*` → Merge green → commit on `main` → Pages | [Owner] + [Lead-chat] | done | Lead-chat verified: commit `4988057` on `main`, `agents/mel-lead/runs/2026-11.md` present, `claude/*` branch no longer exists, Pages live. Individual Actions run colours not viewed by Lead-chat |
+| Remaining scheduled tasks created (UI); Active only after test | [Owner] | pending | Lead task may now be set Active. Collector, Curator+Analyst, Scout blocks issued 2026-11-13 |
 | Human contact / digest path set | [Owner] | done | Owner via Lead chat; digests also in `agents/mel-lead/outputs/` |
 
 ## First-run test — if red
@@ -35,8 +35,9 @@ Onboarding and later chats **update this file** after each step so a new session
 
 ## Blockers / resume notes
 
-- Next: [Owner] creates the Lead task in the Claude UI (Repository = this repo, permission Auto, not Active), clicks Run now, reports back; Lead-chat verifies `main`.
-- Sources: none enabled yet; Scout finds them after first run.
+- Next: [Owner] sets Lead task Active; creates Scout, Collector, Curator+Analyst tasks from the paste blocks (Repository = this repo, Auto); Lead-chat checks `main` after their first runs.
+- Sources: none enabled yet; Scout proposes them after its first run. `fetch.yml` stays commented until then.
+- Lead prompt still contains the FIRST-RUN TEST clause; it is inert now that `runs/` has an entry, but can be removed.
 
 ## Last updated
 
