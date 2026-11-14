@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Role docs last read | `team/process.md`, `team/roles/_base/data-collector.md`, `team/roles/data-collector.md`, `team/mandate.md`, `data/sources.yml`, `data/fetch_status.json` @ main fb9924f (2026-11-13) |
-| Last run (UTC) | 2026-11-13T07:45Z (scheduled) |
-| Current assignments | `team/board/2026-11-13_human-to-collector_002-small-fetch-test.md` (in-progress: filters set, 2 sources enabled, waiting on Owner manual `fetch.yml` run); `human-to-collector_001` (in-progress) |
-| Open items | Review first manual Action fetch and report OK/FAIL per source on the board (`collector-to-lead_002` lists the URLs). Fingertips area type id for London boroughs (asked Lead to check). |
-| Known issues | Collector session proxy rejects data.cdc.gov, ec.europa.eu, fingertips.phe.org.uk, api.census.gov. `fetch_status.json` empty; `data/raw/` empty. CDC PLACES column names other than `placefips` and `*_adjprev` assumed, unverified. Eurostat dimension codes unverified live. Census needs API key (Owner decision). Licences all unconfirmed. |
-| Next planned actions | After the manual run: check `fetch_status.json` last_error per source, inspect `data/raw/<id>/latest.*` (row count, columns, size), fix filter/column errors from Action messages, board OK/FAIL report. Enable Fingertips once Lead confirms area type. Close 001/002 when fetching works. |
+| Role docs last read | `team/process.md`, `team/roles/_base/data-collector.md`, `team/roles/data-collector.md`, `team/mandate.md`, `data/sources.yml`, `data/fetch_status.json` @ main f9113d7 (2026-11-14) |
+| Last run (UTC) | 2026-11-14T07:40Z (scheduled) |
+| Current assignments | `human-to-collector_002` (in-progress: CDC OK, Eurostat URL fixed, waiting on Owner re-run of `fetch.yml`); `human-to-collector_001` (in-progress) |
+| Open items | Review the next manual Action fetch (Eurostat fixed URL, CDC with `locationname`). Owner decision on Fingertips size cap (London-only 3.4 MB vs 2 MB cap). Board `collector-to-lead_003`. |
+| Known issues | Hosts data.cdc.gov, ec.europa.eu, fingertips.phe.org.uk reachable from Collector session as of 2026-11-14 (api.census.gov not retested). Census needs API key (Owner decision). Licences all unconfirmed. Houston food/housing insecurity blank in CDC PLACES (source gap). fetch.yml schedule still off: data only refreshes on manual runs. |
+| Next planned actions | After the re-run: check `fetch_status.json` per source, inspect `data/raw/eurostat-hlth-silc-08/latest.json` (expect 138 values). Enable London-only Fingertips only if Owner raises the cap. Close 001/002 when fetching works. |

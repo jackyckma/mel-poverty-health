@@ -29,11 +29,11 @@ sources:
 
   - id: cdc-places-place-2025
     name: "CDC PLACES: Place data, GIS-friendly format, 2025 release (vgc8-iyc4)"
-    url: "https://data.cdc.gov/resource/vgc8-iyc4.csv?$select=stateabbr,placename,placefips,totalpopulation,diabetes_adjprev,diabetes_adj95ci,depression_adjprev,depression_adj95ci,access2_adjprev,access2_adj95ci,foodinsecu_adjprev,foodinsecu_adj95ci,housinsecu_adjprev,housinsecu_adj95ci&$where=placefips%20in(%270644000%27,%27644000%27,%273651000%27,%271714000%27,%274835000%27)&$limit=10"
+    url: "https://data.cdc.gov/resource/vgc8-iyc4.csv?$select=stateabbr,placename,locationname,placefips,totalpopulation,diabetes_adjprev,diabetes_adj95ci,depression_adjprev,depression_adj95ci,access2_adjprev,access2_adj95ci,foodinsecu_adjprev,foodinsecu_adj95ci,housinsecu_adjprev,housinsecu_adj95ci&$where=placefips%20in(%270644000%27,%27644000%27,%273651000%27,%271714000%27,%274835000%27)&$limit=10"
     format: csv
     enabled: true
     example: false
-    notes: "Scout S1. Geography: US Census places (city proper). Update: annual (2025 release Dec 2025; next expected Dec 2026). Licence: expected US government public domain, NOT confirmed from primary page (data.cdc.gov unreachable from Collector session). Endpoint unverified. PROVISIONAL ENABLE 2026-11-13 (board human-to-collector 002): filtered by placefips to NYC 3651000, LA 0644000 (also 644000 in case leading zero is dropped), Chicago 1714000, Houston 4835000; expect 4 rows, under 5 KB. placefips confirmed by Lead; placename, stateabbr, totalpopulation and *_adj95ci column names are assumed from the PLACES data dictionary, unverified live. Model-based estimates; PA gaps for some measures."
+    notes: "Scout S1. Geography: US Census places (city proper). Update: annual (2025 release Dec 2025; next expected Dec 2026). Licence: expected US government public domain, NOT confirmed from primary page (data.cdc.gov unreachable from Collector session). Endpoint unverified. PROVISIONAL ENABLE 2026-11-13 (board human-to-collector 002): filtered by placefips to NYC 3651000, LA 0644000 (also 644000 in case leading zero is dropped), Chicago 1714000, Houston 4835000; expect 4 rows, under 5 KB. First Action fetch 2026-11-13 OK: 4 rows, 794 bytes, all selected columns present (placename holds the FIPS code). 2026-11-14 added locationname (city name), checked live from Collector session. Houston (TX) foodinsecu and housinsecu are blank in the source: data gap, not a fetch error. Model-based estimates; PA gaps for some measures."
 
   - id: census-acs1-2025-poverty-uninsured
     name: "US Census ACS 1-year 2025 subject tables: poverty rate (S1701) and uninsured rate (S2701) by place"
@@ -53,11 +53,11 @@ sources:
 
   - id: eurostat-hlth-silc-08
     name: "Eurostat EU-SILC: self-reported unmet need for medical examination by income quintile (hlth_silc_08)"
-    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/hlth_silc_08?format=JSON&lang=EN&unit=PC&reason=TOOEFW&sex=T&age=Y_GE16&geo=DE&geo=ES&geo=FR&geo=IT&quantile=TOTAL&quantile=QU1&quantile=QU2&quantile=QU3&quantile=QU4&quantile=QU5&sinceTimePeriod=2020"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/hlth_silc_08?format=JSON&lang=EN&freq=A&unit=PC&reason=TXP_TFAR_WLIST&sex=T&age=Y_GE16&geo=DE&geo=ES&geo=FR&geo=IT&quant_inc=TOTAL&quant_inc=QU1&quant_inc=QU2&quant_inc=QU3&quant_inc=QU4&quant_inc=QU5&sinceTimePeriod=2020"
     format: json
     enabled: true
     example: false
-    notes: "Scout S4 (Owner message calls it S5). NATIONAL CONTEXT LAYER ONLY, not city level. Update: annual (next update planned Dec 2026). Licence: expected CC BY 4.0, NOT confirmed (ec.europa.eu unreachable). Endpoint confirmed by Lead. PROVISIONAL ENABLE 2026-11-13 (board human-to-collector 002): filtered to DE ES FR IT (countries of EU cities above 2M), 2020 onward, reason TOOEFW (too expensive or too far or waiting list), age 16+, both sexes, total plus quintiles 1-5; expect about 150 values, under 20 KB. Dimension codes from the Eurostat codelist, unverified live."
+    notes: "Scout S4 (Owner message calls it S5). NATIONAL CONTEXT LAYER ONLY, not city level. Update: annual (next update planned Dec 2026). Licence: expected CC BY 4.0, NOT confirmed (ec.europa.eu unreachable). Endpoint confirmed by Lead. PROVISIONAL ENABLE 2026-11-13 (board human-to-collector 002): COUNTRY LEVEL. Filtered to DE ES FR IT (countries of EU cities above 2M), annual, 2020 onward, reason TXP_TFAR_WLIST (too expensive, too far or waiting list), age 16+, both sexes, quant_inc TOTAL plus QU1-QU5. First Action fetch 2026-11-13 failed HTTP 400 (wrong codes quantile and TOOEFW). URL fixed 2026-11-14 per board lead-to-collector 003; checked live from Collector session: HTTP 200, 138 values, 4.9 KB, dataset updated 2026-10-20."
 
   - id: ohid-fingertips-life-expectancy
     name: "OHID Fingertips API: life expectancy at birth, England upper-tier local authorities (London boroughs)"
@@ -65,4 +65,4 @@ sources:
     format: csv
     enabled: false
     example: false
-    notes: "Scout S6. Geography: London boroughs / England LAs (filter to London). Update: rolling. Licence: expected Open Government Licence v3, NOT confirmed (fingertips.phe.org.uk unreachable). Indicator 90366 confirmed by Lead. Area type 502 NOT confirmed, so stays disabled per board human-to-collector 002; deprivation-decile indicator still to identify."
+    notes: "Scout S6. Geography: London boroughs / England LAs (filter to London). Update: rolling. Licence: expected Open Government Licence v3, NOT confirmed (fingertips.phe.org.uk unreachable). Indicator 90366 confirmed by Lead. Area type 502 confirmed by Lead (Upper tier LAs post 4/23). STAYS DISABLED: size checked live 2026-11-14, England-wide 14.3 MB (89,565 rows), above the 2 MB cap in board human-to-collector 002. London-only variant (add parent_area_type_id=6 and parent_area_code=E12000007) is 3.4 MB, 20,341 rows, 33 London areas, still above the cap; most rows are LSOA deprivation-decile breakdowns within each area, which are on-topic. Owner decision needed on the cap."

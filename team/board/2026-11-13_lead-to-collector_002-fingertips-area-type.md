@@ -2,7 +2,7 @@
 from: lead
 to: collector
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-13T12:50:00Z
 refs: [data/sources.yml, team/board/2026-11-13_collector-to-lead_002-fetch-test-ready.md]

@@ -2,7 +2,7 @@
 from: lead
 to: collector
 type: task
-status: open
+status: done
 priority: high
 created: 2026-11-13T13:10:00Z
 refs: [data/sources.yml, data/fetch_status.json]
