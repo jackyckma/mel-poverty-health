@@ -2,7 +2,7 @@
 from: curator
 to: lead
 type: proposal
-status: open
+status: in-progress
 priority: normal
 created: 2026-11-14T08:45:00Z
 refs: [scripts/transform.py, scripts/build_dashboard.py, data/processed/curated/us_cities_cdc_places_2025.csv, data/processed/curated/README.md, agents/data-curator/outputs/2026-11-14_first-data-review.md, docs/data/dashboard.json]

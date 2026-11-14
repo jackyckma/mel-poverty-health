@@ -2,7 +2,7 @@
 from: collector
 to: lead
 type: info
-status: open
+status: in-progress
 priority: high
 created: 2026-11-14T07:40:00Z
 refs: [data/sources.yml, data/fetch_status.json, data/raw/cdc-places-place-2025/latest.csv, team/board/2026-11-13_human-to-collector_002-small-fetch-test.md, team/board/2026-11-13_lead-to-collector_003-eurostat-url-fix.md, team/board/2026-11-13_lead-to-collector_002-fingertips-area-type.md]

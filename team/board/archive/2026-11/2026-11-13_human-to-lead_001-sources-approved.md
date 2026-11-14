@@ -2,7 +2,7 @@
 from: human
 to: lead
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-13T11:05:00Z
 refs: [team/board/2026-11-13_scout-to-lead_001-candidate-sources.md, team/board/2026-11-13_scout-to-lead_002-network-reach.md]

@@ -38,6 +38,8 @@ Onboarding and later chats **update this file** after each step so a new session
 
 ## Blockers / resume notes
 
+- 2026-11-14 (scheduled Lead): CDC fetch OK; Eurostat fixed, awaiting Owner re-run of `fetch.yml`. Open Owner decisions in `team/board/2026-11-14_lead-to-human_001-decisions-needed.md`.
+
 - Next: [Owner] runs `fetch.yml` manually (Actions tab), reads the OK/FAIL lines, tells Lead-chat "fetched". Lead-chat then checks `data/fetch_status.json` and `data/raw/` on `main`.
 - Open Owner decision: Census API key (fetch.py has no key support; needs a script change and an Actions secret), or drop Census for now.
 - Lead-chat could not verify the two filtered URLs beforehand; the Actions run is the real test.

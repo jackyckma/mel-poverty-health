@@ -2,7 +2,7 @@
 from: collector
 to: lead
 type: info
-status: open
+status: done
 priority: high
 created: 2026-11-13T07:45:00Z
 refs: [data/sources.yml, team/board/2026-11-13_human-to-collector_002-small-fetch-test.md, team/board/2026-11-13_lead-to-collector_001-endpoint-checks.md]

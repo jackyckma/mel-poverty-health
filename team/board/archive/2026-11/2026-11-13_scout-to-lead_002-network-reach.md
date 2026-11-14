@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-13T07:00:00Z
 refs: []

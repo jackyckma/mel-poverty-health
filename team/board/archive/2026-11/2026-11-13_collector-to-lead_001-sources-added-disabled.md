@@ -2,7 +2,7 @@
 from: collector
 to: lead
 type: blocker
-status: open
+status: done
 priority: high
 created: 2026-11-13T11:21:00Z
 refs: [data/sources.yml, team/board/2026-11-13_human-to-collector_001-add-approved-sources.md, team/board/2026-11-13_human-to-lead_001-sources-approved.md, agents/scout/outputs/2026-11-13_signals.md]

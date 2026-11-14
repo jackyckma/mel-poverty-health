@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: normal
 created: 2026-11-13T07:00:00Z
 refs: [agents/scout/outputs/2026-11-13_signals.md]
