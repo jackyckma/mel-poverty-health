@@ -1,0 +1,456 @@
+--- scripts/transform.py	2026-11-14 05:56:03.082573903 +0000
++++ scripts/transform.py	2026-11-15 07:27:35.241534295 +0000
+@@ -76,11 +76,212 @@
+     return oldest.replace(microsecond=0).isoformat().replace("+00:00", "Z")
+ 
+ 
+-def customise_row(source_id: str, row: dict[str, Any]) -> dict[str, Any] | None:
+-    """CUSTOMISE PER INSTANCE: map a raw record to a processed row, or None to drop.
++# ---------------------------------------------------------------------------
++# Instance hooks (MEL poverty-health). Drafted by data-curator 2026-11-15,
++# per board lead-to-curator 001. Tidy long rows share TIDY_FIELDS; sources
++# without a hook keep the generic one-row-per-record `payload` shape.
++# ---------------------------------------------------------------------------
++
++TIDY_FIELDS = [
++    "source_id",
++    "geo_code",
++    "geo_name",
++    "geo_level",
++    "measure_id",
++    "measure_label",
++    "breakdown",
++    "period",
++    "value",
++    "ci95_low",
++    "ci95_high",
++    "unit",
++    "status",
++    "payload",
++]
++
++# CDC PLACES measures fetched by sources.yml. Labels are curator wording from the
++# PLACES measure definitions; check them against the PLACES data dictionary.
++CDC_PLACES_MEASURES = {
++    "diabetes": "Diagnosed diabetes, adults 18+ (%)",
++    "depression": "Depression, adults 18+ (%)",
++    "access2": "No health insurance, adults 18-64 (%)",
++    "foodinsecu": "Food insecurity in past 12 months, adults 18+ (%)",
++    "housinsecu": "Housing insecurity in past 12 months, adults 18+ (%)",
++}
++
++# Fallback names when `locationname` is absent (2026-11-13 snapshot: `placename`
++# held the FIPS code). Keys are 7-digit place FIPS.
++CDC_PLACE_NAMES = {
++    "0644000": "Los Angeles",
++    "1714000": "Chicago",
++    "3651000": "New York City",
++    "4835000": "Houston",
++}
+ 
++
++def _num(text: Any) -> float | None:
++    if text is None:
++        return None
++    t = str(text).strip()
++    if t == "":
++        return None
++    try:
++        return float(t)
++    except ValueError:
++        return None
++
++
++def _parse_ci(text: Any) -> tuple[float | None, float | None]:
++    """'( 9.8, 11.4)' -> (9.8, 11.4); blank -> (None, None)."""
++    if not text:
++        return None, None
++    parts = str(text).strip().strip("()").split(",")
++    if len(parts) != 2:
++        return None, None
++    return _num(parts[0]), _num(parts[1])
++
++
++def cdc_places_rows(source_id: str, row: dict[str, Any]) -> list[dict[str, Any]]:
++    fips = str(row.get("placefips") or "").strip()
++    if fips.isdigit():
++        fips = fips.zfill(7)
++    name = str(row.get("locationname") or "").strip()
++    if not name or name.isdigit():
++        name = CDC_PLACE_NAMES.get(fips, "") or str(row.get("placename") or "").strip()
++    state = str(row.get("stateabbr") or "").strip()
++    out = []
++    for mid, label in CDC_PLACES_MEASURES.items():
++        col = f"{mid}_adjprev"
++        if col not in row:
++            continue  # measure not requested in this snapshot
++        value = _num(row.get(col))
++        lo, hi = _parse_ci(row.get(f"{mid}_adj95ci"))
++        out.append(
++            {
++                "source_id": source_id,
++                "geo_code": fips,
++                "geo_name": f"{name}, {state}" if state else name,
++                "geo_level": "US Census place (city proper)",
++                "measure_id": mid,
++                "measure_label": label,
++                "breakdown": "age-adjusted",
++                "period": "PLACES 2025 release",
++                "value": value,
++                "ci95_low": lo,
++                "ci95_high": hi,
++                "unit": "percent",
++                "status": "ok" if value is not None else "missing_in_source",
++                "payload": "",
++            }
++        )
++    return out
++
++
++def is_jsonstat(payload: Any) -> bool:
++    return (
++        isinstance(payload, dict)
++        and isinstance(payload.get("id"), list)
++        and isinstance(payload.get("size"), list)
++        and isinstance(payload.get("dimension"), dict)
++        and "value" in payload
++    )
++
++
++JSONSTAT_MAX_CELLS = 50_000  # above this, emit only cells that have a value
++
++
++def jsonstat_rows(source_id: str, ds: dict[str, Any]) -> list[dict[str, Any]]:
++    """Flatten a JSON-stat 2.0 dataset (Eurostat API) to long rows.
++
++    Cells absent from the sparse `value` object are emitted with
++    status=missing_in_source so gaps stay visible (small datasets only).
++    Eurostat cell flags (e.g. b = break, u = low reliability) go in `status`.
++    """
++    ids: list[str] = ds["id"]
++    sizes: list[int] = [int(n) for n in ds["size"]]
++    dims = ds["dimension"]
++    codes: list[list[str]] = []
++    labels: list[dict[str, str]] = []
++    for d in ids:
++        cat = (dims.get(d) or {}).get("category") or {}
++        index = cat.get("index")
++        if isinstance(index, dict):
++            ordered = [c for c, _ in sorted(index.items(), key=lambda kv: kv[1])]
++        elif isinstance(index, list):
++            ordered = list(index)
++        else:
++            ordered = list((cat.get("label") or {}).keys())
++        codes.append(ordered)
++        labels.append(cat.get("label") or {})
++
++    values = ds.get("value")
++    if isinstance(values, list):
++        values = {str(i): v for i, v in enumerate(values) if v is not None}
++    values = {str(k): v for k, v in (values or {}).items()}
++    status = ds.get("status") or {}
++    if isinstance(status, list):
++        status = {str(i): v for i, v in enumerate(status) if v}
++    status = {str(k): v for k, v in status.items()}
++
++    total = 1
++    for n in sizes:
++        total *= n
++    strides = [1] * len(sizes)
++    for i in range(len(sizes) - 2, -1, -1):
++        strides[i] = strides[i + 1] * sizes[i + 1]
++
++    geo_dim = "geo" if "geo" in ids else None
++    time_dim = "time" if "time" in ids else None
++    dataset = str(ds.get("extension", {}).get("id") or source_id)
++    level = "country (national context, not city)" if "silc" in source_id else "as labelled by Eurostat"
++
++    cells = range(total) if total <= JSONSTAT_MAX_CELLS else sorted(int(k) for k in values)
++    out = []
++    for flat in cells:
++        pos = [(flat // strides[i]) % sizes[i] for i in range(len(sizes))]
++        coord = {ids[i]: codes[i][pos[i]] for i in range(len(ids))}
++        varying = [
++            f"{d}={coord[d]}"
++            for i, d in enumerate(ids)
++            if sizes[i] > 1 and d not in (geo_dim, time_dim)
++        ]
++        fixed = [f"{d}={coord[d]}" for i, d in enumerate(ids) if sizes[i] == 1 and d not in (geo_dim, time_dim)]
++        value = values.get(str(flat))
++        flag = status.get(str(flat), "")
++        if value is None:
++            st = "missing_in_source" + (f":{flag}" if flag else "")
++        else:
++            st = "ok" + (f":{flag}" if flag else "")
++        geo = coord.get(geo_dim, "") if geo_dim else ""
++        out.append(
++            {
++                "source_id": source_id,
++                "geo_code": geo,
++                "geo_name": labels[ids.index(geo_dim)].get(geo, geo) if geo_dim else "",
++                "geo_level": level,
++                "measure_id": dataset + (";" + ";".join(fixed) if fixed else ""),
++                "measure_label": str(ds.get("label") or dataset),
++                "breakdown": ";".join(varying),
++                "period": coord.get(time_dim, "") if time_dim else "",
++                "value": value,
++                "ci95_low": None,
++                "ci95_high": None,
++                "unit": coord.get("unit", ""),
++                "status": st,
++                "payload": "",
++            }
++        )
++    return out
++
++
++def customise_row(source_id: str, row: dict[str, Any]) -> dict[str, Any] | list[dict[str, Any]] | None:
++    """CUSTOMISE PER INSTANCE: map a raw record to processed row(s), or None to drop.
++
++    May return one dict, a list of dicts (long format), or None.
+     Default: keep a shallow JSON object as a single 'payload' column plus source id.
+     """
++    if source_id.startswith("cdc-places-"):
++        return cdc_places_rows(source_id, row)
+     return {
+         "source_id": source_id,
+         "payload": json.dumps(row, ensure_ascii=False) if not isinstance(row, str) else row,
+@@ -133,6 +334,8 @@
+     if not loaded:
+         return []
+     fmt, payload = loaded
++    if fmt == "json" and is_jsonstat(payload):
++        return jsonstat_rows(source_id, payload)
+     wb = world_bank_rows(payload) if fmt == "json" else None
+     if wb is not None:
+         records = wb
+@@ -144,7 +347,9 @@
+             row = customise_row(source_id, rec)
+         else:
+             row = customise_row(source_id, {"value": rec})
+-        if row:
++        if isinstance(row, list):
++            out.extend(r for r in row if r)
++        elif row:
+             out.append(row)
+     return out
+ 
+@@ -172,16 +377,24 @@
+         "input_fresh_at": derive_input_fresh_at(root, source_ids),
+         "row_count": len(all_rows),
+         "sources": source_ids,
++        "row_counts": {sid: sum(1 for r in all_rows if r.get("source_id") == sid) for sid in source_ids},
+     }
+     (processed / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+ 
+-    # Also a flat CSV of payloads for spreadsheet-friendly instances
++    # Flat CSV for spreadsheet use. Field list = TIDY_FIELDS plus any extra keys a
++    # hook adds, so a new hook can never crash the writer (DictWriter raises on
++    # unknown keys). Generic rows simply leave tidy columns blank.
++    fieldnames = list(TIDY_FIELDS)
++    for row in all_rows:
++        for key in row:
++            if key not in fieldnames:
++                fieldnames.append(key)
+     csv_path = processed / "all_rows.csv"
+     with csv_path.open("w", encoding="utf-8", newline="") as fh:
+-        writer = csv.DictWriter(fh, fieldnames=["source_id", "payload"])
++        writer = csv.DictWriter(fh, fieldnames=fieldnames, restval="", extrasaction="ignore")
+         writer.writeheader()
+         for row in all_rows:
+-            writer.writerow({"source_id": row.get("source_id", ""), "payload": row.get("payload", "")})
++            writer.writerow({k: ("" if v is None else v) for k, v in row.items()})
+ 
+     print(f"Wrote {len(all_rows)} rows -> {processed}")
+     return 0
+--- scripts/build_dashboard.py	2026-11-14 05:56:03.082573903 +0000
++++ scripts/build_dashboard.py	2026-11-15 07:28:41.945127182 +0000
+@@ -57,6 +57,164 @@
+     return series
+ 
+ 
++# ---------------------------------------------------------------------------
++# Instance hooks (MEL poverty-health). Drafted by data-curator 2026-11-15,
++# per board lead-to-curator 001. Honest-method rules: every view names source,
++# date and geography; gaps are listed; no poverty-vs-health claim until
++# poverty-side data lands; the page is an internal draft until the Owner
++# approves publication.
++# ---------------------------------------------------------------------------
++
++SOURCE_CITES = {
++    "cdc-places-place-2025": "CDC PLACES 2025 release, dataset vgc8-iyc4 (Public Domain; CDC NCCDPHP Division of Population Health)",
++    "eurostat-hlth-silc-08": "Source: Eurostat (hlth_silc_08), EU-SILC. Modified (filtered, reshaped) by MEL; Eurostat is not responsible for this output",
++}
++
++PUBLICATION_STATUS = "Internal draft: not for publication until the Owner approves (via MEL Lead)."
++
++
++def load_rows(processed: Path, source_id: str) -> list[dict[str, Any]]:
++    path = processed / f"{source_id}.json"
++    if not path.exists():
++        return []
++    try:
++        data = json.loads(path.read_text(encoding="utf-8"))
++    except json.JSONDecodeError:
++        return []
++    return [r for r in data if isinstance(r, dict) and r.get("measure_id")] if isinstance(data, list) else []
++
++
++def collected_at(fetch_status: dict[str, Any], source_id: str) -> str:
++    entry = (fetch_status.get("sources") or {}).get(source_id) or {}
++    return entry.get("last_success") or "never collected"
++
++
++def city_charts(processed: Path, fetch_status: dict[str, Any]) -> list[dict[str, Any]]:
++    charts = []
++    sid = "cdc-places-place-2025"
++    rows = load_rows(processed, sid)
++    measures: dict[str, list[dict[str, Any]]] = {}
++    for r in rows:
++        measures.setdefault(r["measure_id"], []).append(r)
++    for mid, mrows in measures.items():
++        mrows = sorted(mrows, key=lambda r: r.get("geo_name") or "")
++        missing = [r["geo_name"] for r in mrows if r.get("value") is None]
++        charts.append(
++            {
++                "id": f"cdc-{mid}",
++                "title": f"{mrows[0].get('measure_label', mid)}: US cities over 2M (city proper)",
++                "type": "bar",
++                "labels": [r["geo_name"] for r in mrows],
++                "values": [r.get("value") for r in mrows],
++                "ci95_low": [r.get("ci95_low") for r in mrows],
++                "ci95_high": [r.get("ci95_high") for r in mrows],
++                "source": SOURCE_CITES[sid],
++                "geography": "US Census place (city proper)",
++                "date": f"{mrows[0].get('period', '')}; collected {collected_at(fetch_status, sid)}",
++                "note": "Age-adjusted model-based estimates with 95% CI."
++                + (f" No value in source for: {', '.join(missing)}." if missing else ""),
++            }
++        )
++    return charts
++
++
++def national_charts(processed: Path, fetch_status: dict[str, Any]) -> list[dict[str, Any]]:
++    sid = "eurostat-hlth-silc-08"
++    rows = [r for r in load_rows(processed, sid) if r.get("value") is not None]
++    if not rows:
++        return []
++    # Latest year that every country has, so bars compare like with like.
++    by_geo: dict[str, set[str]] = {}
++    for r in rows:
++        by_geo.setdefault(r["geo_code"], set()).add(r["period"])
++    common = set.intersection(*by_geo.values()) if by_geo else set()
++    if not common:
++        return []
++    year = max(common)
++    keep = {"quant_inc=QU1": "poorest fifth", "quant_inc=QU5": "richest fifth"}
++    labels, values = [], []
++    for geo in sorted(by_geo):
++        for bd, name in keep.items():
++            hit = [r for r in rows if r["geo_code"] == geo and r["period"] == year and bd in r.get("breakdown", "")]
++            if hit:
++                labels.append(f"{geo} {name}")
++                values.append(hit[0]["value"])
++    return [
++        {
++            "id": "eurostat-unmet-need-quintile",
++            "title": f"Unmet need for medical examination (cost, distance or waiting list), by income fifth, {year} (%)",
++            "type": "bar",
++            "labels": labels,
++            "values": values,
++            "source": SOURCE_CITES[sid],
++            "geography": "Country (national context only, not city)",
++            "date": f"{year}; collected {collected_at(fetch_status, sid)}",
++            "note": "Self-reported, people 16+. National figures: they do not describe any single city.",
++        }
++    ]
++
++
++def gap_lines(processed: Path, fetch_status: dict[str, Any]) -> list[str]:
++    lines = []
++    for sid, entry in sorted((fetch_status.get("sources") or {}).items()):
++        if sid.startswith("example-"):
++            continue
++        if entry.get("skipped") == "disabled":
++            lines.append(f"{sid}: not collected (source disabled).")
++        elif entry.get("last_error") and not entry.get("last_success"):
++            lines.append(f"{sid}: never collected (last error: {entry['last_error']}).")
++        elif entry.get("last_error"):
++            lines.append(f"{sid}: last fetch failed; showing data collected {entry.get('last_success')}.")
++        missing = [r for r in load_rows(processed, sid) if r.get("value") is None]
++        if missing:
++            sample = sorted({f"{r.get('geo_name')} {r.get('breakdown') if sid.startswith('eurostat') else r.get('measure_id')} {r.get('period') if sid.startswith('eurostat') else ''}".strip() for r in missing})[:6]
++            lines.append(f"{sid}: {len(missing)} cells blank in source (e.g. {'; '.join(sample)}).")
++    return lines
++
++
++def instance_sections(processed: Path, fetch_status: dict[str, Any], input_fresh_at: str | None, stale: bool) -> list[dict[str, Any]]:
++    gaps = gap_lines(processed, fetch_status)
++    fresh = input_fresh_at or "never"
++    loaded = []
++    if load_rows(processed, "cdc-places-place-2025"):
++        loaded.append("CDC PLACES for US cities")
++    if any(r.get("value") is not None for r in load_rows(processed, "eurostat-hlth-silc-08")):
++        loaded.append("Eurostat EU-SILC national context")
++    loaded_text = "; ".join(loaded) if loaded else "none yet"
++    return [
++        {
++            "id": "overview",
++            "title": "Overview",
++            "body": (
++                "Poverty and health in US and European cities over 2 million people. "
++                f"Data collected: {fresh}{' (STALE)' if stale else ''}. "
++                f"Loaded: {loaded_text}. Health and access measures only so far. "
++                "No poverty-vs-health comparison is shown until poverty-side data is loaded. "
++                + PUBLICATION_STATUS
++            ),
++        },
++        {
++            "id": "city-comparisons",
++            "title": "City comparisons",
++            "body": (
++                "US cities: CDC PLACES, city proper, age-adjusted model estimates with 95% CI. "
++                "European cities: no city-level data yet (Eurostat urb_* disabled). "
++                "Bars compare cities within one source and one definition only. Correlation is not causation."
++            ),
++        },
++        {
++            "id": "news-signals",
++            "title": "News signals",
++            "body": "Not wired yet. Scout news items are signals, not evidence, and are not shown as data.",
++        },
++        {
++            "id": "data-gaps",
++            "title": "Data gaps and method notes",
++            "body": " ".join(gaps) if gaps else "No gaps recorded by the pipeline.",
++        },
++    ]
++
++
+ def resolve_input_fresh_at(summary: dict[str, Any], fetch_status: dict[str, Any]) -> str | None:
+     if summary.get("input_fresh_at"):
+         return summary["input_fresh_at"]
+@@ -127,17 +285,14 @@
+             "row_count": row_count,
+             "sources": summary.get("sources", []),
+         },
+-        "sections": [
+-            {
+-                "id": "overview",
+-                "title": "Overview",
+-                "body": "Placeholder section — Curator configures titles and copy per instance.",
+-            }
+-        ],
+-        "charts": [
++        "publication_status": PUBLICATION_STATUS,
++        "sections": instance_sections(processed, fetch_status, input_fresh_at, stale),
++        "charts": city_charts(processed, fetch_status)
++        + national_charts(processed, fetch_status)
++        + [
+             {
+                 "id": "rows-by-source",
+-                "title": "Processed rows by source",
++                "title": "Pipeline check: processed rows by source",
+                 "type": "bar",
+                 "labels": [s["label"] for s in series],
+                 "values": [s["value"] for s in series],
