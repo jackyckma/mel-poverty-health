@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Role docs last read | `team/process.md`, `team/roles/_base/data-collector.md`, `team/roles/data-collector.md`, `team/mandate.md`, `data/sources.yml`, `data/fetch_status.json` @ main f9113d7 (2026-11-14) |
-| Last run (UTC) | 2026-11-14T07:40Z (scheduled) |
-| Current assignments | `human-to-collector_002` (in-progress: CDC OK, Eurostat URL fixed, waiting on Owner re-run of `fetch.yml`); `human-to-collector_001` (in-progress) |
-| Open items | Review the next manual Action fetch (Eurostat fixed URL, CDC with `locationname`). Owner decision on Fingertips size cap (London-only 3.4 MB vs 2 MB cap). Board `collector-to-lead_003`. |
-| Known issues | Hosts data.cdc.gov, ec.europa.eu, fingertips.phe.org.uk reachable from Collector session as of 2026-11-14 (api.census.gov not retested). Census needs API key (Owner decision). Licences all unconfirmed. Houston food/housing insecurity blank in CDC PLACES (source gap). fetch.yml schedule still off: data only refreshes on manual runs. |
-| Next planned actions | After the re-run: check `fetch_status.json` per source, inspect `data/raw/eurostat-hlth-silc-08/latest.json` (expect 138 values). Enable London-only Fingertips only if Owner raises the cap. Close 001/002 when fetching works. |
+| Role docs last read | `team/process.md`, `team/roles/_base/data-collector.md`, `team/roles/data-collector.md`, `team/mandate.md`, `data/sources.yml`, `data/fetch_status.json` @ main 4971a87 (2026-11-15) |
+| Last run (UTC) | 2026-11-15T07:40Z (scheduled) |
+| Current assignments | `human-to-collector_002` (in-progress: waiting on Owner re-run of `fetch.yml`); `human-to-collector_001` (in-progress). `lead-to-collector_004` done. |
+| Open items | Review the next manual Action fetch (Eurostat fixed URL, CDC with `locationname`). Owner decisions: Fingertips size cap, Census key. Board `collector-to-lead_003`, `_005`. |
+| Known issues | No Action fetch since 2026-11-13 12:41 UTC; dashboard stale after 2026-11-15 12:41 UTC. Census API still needs a key (302 to missing_key, 2026-11-15). Licences confirmed for CDC PLACES (Public Domain) and Eurostat hlth_silc_08 (Eurostat reuse, source acknowledged); others unconfirmed. Houston food/housing insecurity blank in CDC PLACES (source gap). fetch.yml schedule off. data.cdc.gov sometimes resets connections from the session (retry worked). |
+| Next planned actions | After the re-run: check `fetch_status.json` per source, inspect `data/raw/eurostat-hlth-silc-08/latest.json` (expect 138 values). If there is still no re-run and the dashboard is stale, raise to `blocker`. Enable Fingertips only if the Owner raises the cap. Close 001/002 when fetching works. |

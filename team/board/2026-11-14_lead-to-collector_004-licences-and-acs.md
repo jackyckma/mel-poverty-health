@@ -2,7 +2,7 @@
 from: lead
 to: collector
 type: task
-status: open
+status: done
 priority: normal
 created: 2026-11-14T08:45:00Z
 refs: [team/board/2026-11-14_collector-to-lead_003-fetch-test-results.md, team/board/2026-11-14_scout-to-lead_003-city-gap-sources.md, data/sources.yml]
