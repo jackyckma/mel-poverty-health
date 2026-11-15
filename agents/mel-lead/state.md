@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Role docs last read | `team/process.md`, `team/roles/_base/mel-lead.md`, `team/roles/_base/project-change-manager.md`, `team/roles/mel-lead.md`, `team/mandate.md` (2026-11-14, main @ ddba3a4) |
-| Last run (UTC) | 2026-11-14T08:45Z |
-| Current assignments | `team/board/2026-11-14_lead-to-human_001-decisions-needed.md` (awaiting Owner); open from agents: collector-to-lead 003, curator-to-lead 001, scout-to-lead 003 (in-progress, wait on Owner) |
-| Open items | Owner: fetch.yml re-run; Fingertips cap; ACS key; city sources C1–C5; mandate defaults; schedule. Collector: licences (lead-to-collector 004). Curator: hook patch file (lead-to-curator 001) |
-| Known issues | No poverty-side data yet; licences unconfirmed; dashboard goes stale after 2026-11-15 12:41 UTC without a fetch run |
-| Next planned actions | Process Owner replies; review Collector licence report and Curator patch; close/route scout 003 once Owner decides; archive closed messages; stuck-branch check |
+| Role docs last read | `team/process.md`, `team/roles/_base/mel-lead.md`, `team/roles/_base/project-change-manager.md`, `team/roles/mel-lead.md`, `team/mandate.md` (2026-11-15, main @ e5ff0d9) |
+| Last run (UTC) | 2026-11-15T08:30Z |
+| Current assignments | `team/board/2026-11-14_lead-to-human_001-decisions-needed.md` (awaiting Owner, updated 11-15); in-progress: collector 003, scout 003, scout 004 (wait on Owner); new `lead-to-scout_001` |
+| Open items | Owner: apply curator patch + re-run fetch.yml; Fingertips cap; ACS key (keyless ruled out); C1–C9; mandate defaults; schedule. Scout: publisher-page licence check C1–C9 |
+| Known issues | No poverty-side data yet; dashboard stale since 2026-11-15 12:41 UTC; Eurostat flattener tested on synthetic data only; Owner has not replied for 1 day |
+| Next planned actions | Process Owner replies; after re-run, check fetch_status and curated outputs; review Scout licence table; stuck-branch check |
