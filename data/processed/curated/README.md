@@ -12,5 +12,6 @@ when its raw snapshot changes.
 |------|-----------|-----------|-------|
 | `us_cities_cdc_places_2025.csv` | `data/raw/cdc-places-place-2025/20261113T124153Z.csv` | US Census place (city proper) | 4 US cities over 2 million x 5 measures. Values are age-adjusted, model-based estimates (CDC PLACES), with 95% CI. City names are from a curator FIPS lookup because `placename` held the FIPS code in that snapshot; `locationname` arrives with the next fetch. Measure labels are curator wording from PLACES definitions and are not yet checked against the PLACES data dictionary. `population_as_reported` is the PLACES `totalpopulation` column; its census vintage is not confirmed. `status=missing_in_source` marks blanks in the source. |
 
-Licence for CDC PLACES is still unconfirmed (see `data/sources.yml`). Do not publish from these
-files until the Lead and Owner confirm it.
+Licence for CDC PLACES: Public Domain (dataset metadata, checked by the Collector on 2026-11-15; see
+`data/sources.yml`). Cite: CDC, NCCDPHP, Division of Population Health, PLACES dataset vgc8-iyc4.
+Publishing still needs the Owner's approval via the Lead.

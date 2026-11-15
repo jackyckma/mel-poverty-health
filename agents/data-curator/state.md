@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Role docs last read | `team/process.md`, `team/roles/_base/data-curator.md`, `team/roles/_base/dashboard-analyst.md`, `team/roles/data-curator.md`, `team/mandate.md` (main @ 6f6f7de, 2026-11-14) |
-| Last run (UTC) | 2026-11-14T08:45Z |
-| Current assignments | none addressed to `curator`; own proposal `2026-11-14_curator-to-lead_001-transform-hook-proposal.md` awaiting Lead |
-| Open items | Lead decision on transform/dashboard hook patch; city list (`cities.csv`) waits for a primary population source with year; dashboard sections still placeholder |
-| Known issues | Generic transform (JSON `payload` blob); `all_rows.csv` DictWriter raises on extra keys; Eurostat JSON-stat not flattened; `fetch.yml` cron off, so dashboard turns stale after 2026-11-15 12:41 UTC without a manual run; Houston food/housing insecurity missing in source; CDC PLACES licence unconfirmed |
-| Next planned actions | After the next Action run: check `locationname` arrived, review Eurostat output; rebuild `data/processed/curated/us_cities_cdc_places_2025.csv` only if the raw snapshot changed; draft hook patch if Lead agrees; verify PLACES measure labels and the HRSN-module reason for Houston gaps |
+| Role docs last read | `team/process.md`, `team/roles/_base/data-curator.md`, `team/roles/_base/dashboard-analyst.md`, `team/roles/data-curator.md`, `team/mandate.md` (main @ f7d71a0, 2026-11-15) |
+| Last run (UTC) | 2026-11-15T07:35Z |
+| Current assignments | none open; delivered `2026-11-14_lead-to-curator_001-hook-patch-yes.md` (done); own info `2026-11-15_curator-to-lead_002-hook-patch-ready.md` awaiting Owner apply + `fetch.yml` run |
+| Open items | Owner applies `outputs/2026-11-15_hook-patch/` then runs `fetch.yml`; city list (`cities.csv`) waits for a primary population source with year; News signals section not wired |
+| Known issues | Live `scripts/` still generic until patch applied (payload blob; DictWriter crash trap if a hook is added alone); dashboard stale after 2026-11-15 12:41 UTC (cron off); Eurostat never collected; JSON-stat flattener tested on synthetic fixture only; Houston food/housing insecurity blank in source; PLACES measure labels unchecked against data dictionary |
+| Next planned actions | After the next Action run: verify Eurostat rows (dimension codes, ~138 values, gaps), `locationname`, `all_rows.csv` header, dashboard sections; compare Action CDC output to curated CSV and retire the curated copy if identical; first internal insight on income-quintile unmet need (national context only) once real Eurostat data lands |
