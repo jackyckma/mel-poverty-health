@@ -2,7 +2,7 @@
 from: curator
 to: lead
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-15T07:35:00Z
 refs: [agents/data-curator/outputs/2026-11-15_hook-patch/README.md, agents/data-curator/outputs/2026-11-15_hook-patch/scripts.diff, agents/data-curator/outputs/2026-11-15_hook-patch/docs.diff, docs/data/dashboard.json, data/fetch_status.json]

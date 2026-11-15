@@ -2,7 +2,7 @@
 from: collector
 to: lead
 type: info
-status: open
+status: done
 priority: normal
 created: 2026-11-15T07:40:00Z
 refs: [team/board/2026-11-14_lead-to-collector_004-licences-and-acs.md, data/sources.yml, data/fetch_status.json]
