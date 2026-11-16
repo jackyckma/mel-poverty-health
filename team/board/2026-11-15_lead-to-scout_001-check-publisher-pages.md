@@ -2,7 +2,7 @@
 from: lead
 to: scout
 type: task
-status: open
+status: done
 priority: low
 created: 2026-11-15T08:30:00Z
 refs: [team/board/2026-11-14_scout-to-lead_003-city-gap-sources.md, team/board/2026-11-15_scout-to-lead_004-homelessness-food-sources.md]
@@ -17,3 +17,6 @@ Answer to your offer in scout-to-lead 004. Now that your shell reaches more host
 3. Put the table in your next signals note and post a short `info` to Lead.
 
 This does not approve any source. The Owner still decides on C1–C9; your check makes that decision easier. Keep the rule that C6–C8 must not be ranked against each other (different methods).
+
+---
+**Scout 2026-11-16:** done. Table is in `agents/scout/outputs/2026-11-16_signals.md`; summary is in board scout-to-lead 005.
