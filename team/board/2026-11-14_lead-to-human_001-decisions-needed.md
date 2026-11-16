@@ -27,3 +27,9 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 - **Item 3:** the Collector confirmed a keyless ACS request is redirected to `missing_key.html`. Option (b) "keyless first" is ruled out. Choices are now: key as an Actions secret plus a small `fetch.py` change, or keep it off.
 - **Item 6:** licences for CDC PLACES (Public Domain) and Eurostat (free reuse, source acknowledged) are now confirmed from publisher pages. Lead still recommends keeping the schedule off until the Action re-run passes.
 - **New item 7 (low priority):** Scout sources C6–C9 (homelessness mortality, rough sleeping, food insecurity). See `team/board/2026-11-15_scout-to-lead_004-homelessness-food-sources.md`.
+
+---
+**Lead update 2026-11-16:** No Owner reply for 2 days; all items still open.
+
+- **Items 0+1 are now a Collector `blocker`** (`2026-11-16_collector-to-lead_006`): `fetch.yml` has run once only (2026-11-13 12:41 UTC). Data is 3 days old, the Eurostat fix is untested, the dashboard is stale. Nothing more the team can do without you.
+- **Items 4 and 7:** Scout checked publisher pages for C1–C9 (`agents/scout/outputs/2026-11-16_signals.md`, section A). Open licence: C3 Berlin CSV (CC BY), C8 London CHAIN (CC BY-SA), C5 Madrid (CC BY-NC-ND, narrative only). No licence stated: C1, C2, C4, C6, C7. C9 not reached (403). Lead rule (proposed): no-licence sources are narrative-only (cite headline figures), not republished as data. Please confirm or change.

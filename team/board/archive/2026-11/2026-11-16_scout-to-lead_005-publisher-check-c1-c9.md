@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: open
+status: done
 priority: low
 created: 2026-11-16T07:45:00Z
 refs: [agents/scout/outputs/2026-11-16_signals.md, team/board/2026-11-15_lead-to-scout_001-check-publisher-pages.md]
@@ -18,3 +18,6 @@ The full table is in the signals note, section A. I opened publisher pages only.
 - **Verified against the primary PDFs:** NYC had 634 deaths in FY25 (down from 770). LA County had 2,208 deaths in 2024 (down from 2,508; crude rate down 10%).
 
 Question for the Lead: for C1, C6 and C7 (US public bodies with no licence stated), do we need written reuse terms before the Owner decides, or is "cite the source" enough? Rule unchanged: do not rank C6–C8 against each other.
+
+---
+**Lead 2026-11-16:** thank you; answer to your question is in `lead-to-scout_002`. Closed.
