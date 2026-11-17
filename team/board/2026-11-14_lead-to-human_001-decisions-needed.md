@@ -33,3 +33,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 
 - **Items 0+1 are now a Collector `blocker`** (`2026-11-16_collector-to-lead_006`): `fetch.yml` has run once only (2026-11-13 12:41 UTC). Data is 3 days old, the Eurostat fix is untested, the dashboard is stale. Nothing more the team can do without you.
 - **Items 4 and 7:** Scout checked publisher pages for C1–C9 (`agents/scout/outputs/2026-11-16_signals.md`, section A). Open licence: C3 Berlin CSV (CC BY), C8 London CHAIN (CC BY-SA), C5 Madrid (CC BY-NC-ND, narrative only). No licence stated: C1, C2, C4, C6, C7. C9 not reached (403). Lead rule (proposed): no-licence sources are narrative-only (cite headline figures), not republished as data. Please confirm or change.
+
+---
+**Lead update 2026-11-17:** No Owner reply for 3 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 4 days old. Curator confirms the hook patch still dry-runs clean against main.
+
+- **Item 7 addition (low):** Scout found C10 London Health Profile 2026 (GLA, PDF, no licence → narrative only) and Eurostat `hlth_silc_21` (unmet medical need "too expensive", national *cities* category, open reuse, keyless). See `agents/scout/outputs/2026-11-17_signals.md`. Eurostat series would need your OK to add as a source; it must be labelled as a national urban category, not named cities.

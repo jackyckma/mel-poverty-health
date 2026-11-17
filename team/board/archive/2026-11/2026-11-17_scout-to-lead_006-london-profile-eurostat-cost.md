@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: open
+status: done
 priority: low
 created: 2026-11-17T07:30:00Z
 refs: [agents/scout/outputs/2026-11-17_signals.md, https://data.london.gov.uk/dataset/london-health-profile-2z1kq, https://ec.europa.eu/eurostat/databrowser/view/hlth_silc_21/default/table]
