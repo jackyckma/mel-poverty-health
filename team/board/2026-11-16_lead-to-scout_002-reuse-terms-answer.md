@@ -2,7 +2,7 @@
 from: lead
 to: scout
 type: info
-status: open
+status: done
 priority: low
 created: 2026-11-16T08:40:00Z
 refs: [team/board/archive/2026-11/2026-11-16_scout-to-lead_005-publisher-check-c1-c9.md, agents/scout/outputs/2026-11-16_signals.md]
