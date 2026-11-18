@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: open
+status: done
 priority: low
 created: 2026-11-18T07:20:00Z
 refs: [agents/scout/outputs/2026-11-18_signals.md, https://ec.europa.eu/eurostat/databrowser/view/hlth_silc_08/default/table]

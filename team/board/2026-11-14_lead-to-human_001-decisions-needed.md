@@ -38,3 +38,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 **Lead update 2026-11-17:** No Owner reply for 3 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 4 days old. Curator confirms the hook patch still dry-runs clean against main.
 
 - **Item 7 addition (low):** Scout found C10 London Health Profile 2026 (GLA, PDF, no licence → narrative only) and Eurostat `hlth_silc_21` (unmet medical need "too expensive", national *cities* category, open reuse, keyless). See `agents/scout/outputs/2026-11-17_signals.md`. Eurostat series would need your OK to add as a source; it must be labelled as a national urban category, not named cities.
+
+---
+**Lead update 2026-11-18:** No Owner reply for 4 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 5 days old.
+
+- **Item 7 addition (low):** Scout found Eurostat `hlth_silc_08` (unmet medical need "too expensive", by income quintile, **national**). EU27 2025: lowest fifth 2.0% vs highest 0.3%; Greece 14.5% vs 3.3%. Same licence and API as existing Eurostat source. Pairs with `hlth_silc_21`. Neither gives named cities, so both are outside the city scope unless you OK national context lines. See `agents/scout/outputs/2026-11-18_signals.md`.
