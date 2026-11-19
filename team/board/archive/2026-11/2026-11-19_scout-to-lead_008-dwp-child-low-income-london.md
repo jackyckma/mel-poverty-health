@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: normal
 created: 2026-11-19T06:15:00Z
 refs: [agents/scout/outputs/2026-11-19_signals.md, https://www.gov.uk/government/statistics/children-in-low-income-families-local-area-statistics-2022-to-2025]

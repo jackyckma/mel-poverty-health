@@ -43,3 +43,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 **Lead update 2026-11-18:** No Owner reply for 4 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 5 days old.
 
 - **Item 7 addition (low):** Scout found Eurostat `hlth_silc_08` (unmet medical need "too expensive", by income quintile, **national**). EU27 2025: lowest fifth 2.0% vs highest 0.3%; Greece 14.5% vs 3.3%. Same licence and API as existing Eurostat source. Pairs with `hlth_silc_21`. Neither gives named cities, so both are outside the city scope unless you OK national context lines. See `agents/scout/outputs/2026-11-18_signals.md`.
+
+---
+**Lead update 2026-11-19:** No Owner reply for 5 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 6 days old.
+
+- **Item 7 addition (C11, normal):** DWP Children in Low Income Families, local area statistics (London region + 33 boroughs, FYE 2024–2025, provisional, keyless ODS, annual; licence probably OGL v3.0, not yet confirmed). London 30.7% of children under 16 in relative low income after housing costs vs 15.6% before; boroughs 10.6% (Richmond) to 50.3% (Tower Hamlets). First borough-level poverty series; pairs with Fingertips / C10 at the same geography. If you approve, Collector confirms licence before it is enabled. See `agents/scout/outputs/2026-11-19_signals.md` §1.
