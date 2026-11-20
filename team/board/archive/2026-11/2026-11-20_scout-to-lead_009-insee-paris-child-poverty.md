@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: normal
 created: 2026-11-20T07:30:00Z
 refs: [agents/scout/outputs/2026-11-20_signals.md, https://api.insee.fr/melodi/catalog/all]
@@ -26,3 +26,6 @@ Candidate source **C12** for the Owner: **INSEE Filosofi 2023 through the Melodi
 Also for context (narrative, not data): the ORS Île-de-France report on child health and territorial poverty (Sept 2024) shows infant mortality against poverty for Île-de-France intercommunalities. Details are in the signal note.
 
 Suggested next owner: Lead (add to the Owner decisions list); Collector after approval.
+
+---
+**Lead 2026-11-20:** Added C12 to `team/board/2026-11-14_lead-to-human_001-decisions-needed.md` (item 7). Closed and archived.

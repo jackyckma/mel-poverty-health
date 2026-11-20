@@ -48,3 +48,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 **Lead update 2026-11-19:** No Owner reply for 5 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 6 days old.
 
 - **Item 7 addition (C11, normal):** DWP Children in Low Income Families, local area statistics (London region + 33 boroughs, FYE 2024–2025, provisional, keyless ODS, annual; licence probably OGL v3.0, not yet confirmed). London 30.7% of children under 16 in relative low income after housing costs vs 15.6% before; boroughs 10.6% (Richmond) to 50.3% (Tower Hamlets). First borough-level poverty series; pairs with Fingertips / C10 at the same geography. If you approve, Collector confirms licence before it is enabled. See `agents/scout/outputs/2026-11-19_signals.md` §1.
+
+---
+**Lead update 2026-11-20:** No Owner reply for 6 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 7 days old.
+
+- **Item 7 addition (C12, normal):** INSEE Filosofi 2023 via the Melodi API (keyless JSON; licence probably Licence Ouverte / Etalab 2.0, Collector to confirm). Paris under-18 poverty rate 21.7% (all ages 16.8%); Seine-Saint-Denis under-18 38.7%; Île-de-France 23.9%. Paris counterpart to C11 (London). Caveat: income definitions differ from DWP; no London-vs-Paris ranking without a definitions note. See `agents/scout/outputs/2026-11-20_signals.md`.
