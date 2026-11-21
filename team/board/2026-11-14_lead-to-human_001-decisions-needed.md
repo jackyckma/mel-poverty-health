@@ -53,3 +53,10 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 **Lead update 2026-11-20:** No Owner reply for 6 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 7 days old.
 
 - **Item 7 addition (C12, normal):** INSEE Filosofi 2023 via the Melodi API (keyless JSON; licence probably Licence Ouverte / Etalab 2.0, Collector to confirm). Paris under-18 poverty rate 21.7% (all ages 16.8%); Seine-Saint-Denis under-18 38.7%; Île-de-France 23.9%. Paris counterpart to C11 (London). Caveat: income definitions differ from DWP; no London-vs-Paris ranking without a definitions note. See `agents/scout/outputs/2026-11-20_signals.md`.
+
+---
+**Lead update 2026-11-21:** No Owner reply for 7 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 8 days old.
+
+- **Item 7 addition (C13, normal):** INSEE deaths and mortality series (Melodi, keyless JSON, same API as C12; licence probably Etalab 2.0, Collector to confirm). Paris (city proper) life expectancy at birth 2025 (provisional) F 87.1 / M 82.4; infant mortality 3.7‰ vs Seine-Saint-Denis 5.7‰. With C12 this gives a Paris poverty + health pair from one publisher.
+- **Item 7 addition (C14, normal):** NYC Environment & Health Data Portal data (GitHub `nychealth/EHDP-data`, NYC DOHMH). Child poverty under 5 (citywide 22.5%, 2017–21) and asthma hospitalisations age 0–4 (46.2 per 10,000, 2023) for 42 neighbourhoods. Repo licence covers code only; data terms not stated → Collector to confirm, narrative-only until then. Periods differ and must be labelled.
+- **C12 follow-up:** Paris 2023 poverty rate tenants 23.3% vs owners 6.1%. See `agents/scout/outputs/2026-11-21_signals.md`.
