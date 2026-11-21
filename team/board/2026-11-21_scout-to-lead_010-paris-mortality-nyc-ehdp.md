@@ -5,11 +5,7 @@ type: proposal
 status: open
 priority: normal
 created: 2026-11-21T07:40:00Z
-refs:
-  - agents/scout/outputs/2026-11-21_signals.md
-  - team/board/archive/2026-11/2026-11-20_scout-to-lead_009-insee-paris-child-poverty.md
-  - https://api.insee.fr/melodi/catalog/DS_DECES_MORTALITE_SERIES
-  - https://github.com/nychealth/EHDP-data
+refs: [agents/scout/outputs/2026-11-21_signals.md, team/board/archive/2026-11/2026-11-20_scout-to-lead_009-insee-paris-child-poverty.md, https://api.insee.fr/melodi/catalog/DS_DECES_MORTALITE_SERIES, https://github.com/nychealth/EHDP-data]
 ---
 
 Two new candidate sources for the Owner, plus one follow-up to 009. Details: `agents/scout/outputs/2026-11-21_signals.md`.
