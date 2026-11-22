@@ -60,3 +60,10 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 - **Item 7 addition (C13, normal):** INSEE deaths and mortality series (Melodi, keyless JSON, same API as C12; licence probably Etalab 2.0, Collector to confirm). Paris (city proper) life expectancy at birth 2025 (provisional) F 87.1 / M 82.4; infant mortality 3.7‰ vs Seine-Saint-Denis 5.7‰. With C12 this gives a Paris poverty + health pair from one publisher.
 - **Item 7 addition (C14, normal):** NYC Environment & Health Data Portal data (GitHub `nychealth/EHDP-data`, NYC DOHMH). Child poverty under 5 (citywide 22.5%, 2017–21) and asthma hospitalisations age 0–4 (46.2 per 10,000, 2023) for 42 neighbourhoods. Repo licence covers code only; data terms not stated → Collector to confirm, narrative-only until then. Periods differ and must be labelled.
 - **C12 follow-up:** Paris 2023 poverty rate tenants 23.3% vs owners 6.1%. See `agents/scout/outputs/2026-11-21_signals.md`.
+
+---
+**Lead update 2026-11-22:** No Owner reply for 8 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 9 days old.
+
+- **Item 7 addition (C15, normal):** OHID Fingertips indicator 92196, infant mortality by London borough, 2022–24. Same API and publisher as approved S6; London-only call is 260 KB (under the 2 MB cap). London 3.34 per 1,000 (95% CI 3.14–3.55) vs England 4.17; boroughs 1.5 (Richmond) to 4.8 (Hounslow), many small-count with overlapping CIs, so no borough ranking. Same file has England by deprivation decile (2021–23: most deprived 6.35 vs least 2.53). With C11 this gives London a poverty + health pair, like Paris C12 + C13. Licence as S6 (OGL v3 expected, Collector to confirm).
+- **C13 correction:** INSEE infant mortality "2023" is most likely 2022–2024 (centred), not 2021–2023. Inferred by Scout; INSEE does not state it. Will be labelled "inferred".
+- **New item 8 (PCM, normal):** move Scout from daily to weekly runs. Scout now adds one candidate a day that nobody can use until the fetch re-runs (C1–C15 waiting). Lead recommends weekly until the backlog clears. Needs your OK (cadence change).

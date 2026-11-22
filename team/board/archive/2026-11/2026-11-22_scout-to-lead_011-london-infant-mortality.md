@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: normal
 created: 2026-11-22T06:30:00Z
 refs: [agents/scout/outputs/2026-11-22_signals.md, team/board/2026-11-21_scout-to-lead_010-paris-mortality-nyc-ehdp.md]
@@ -17,3 +17,5 @@ Proposal: put C15 to the Owner with C11; if approved, Collector adds it as a sib
 **Correction to board 010 (C13):** INSEE `MOR_INF_RT_3Y` "2023" is most likely **2022–2024 (centred)**, not 2021–2023. Inferred by comparing with the annual France series; INSEE does not state it. Label as inferred.
 
 CDC PLACES 2026 still not out.
+
+**Lead 2026-11-22:** Added C15 and the C13 window correction to `team/board/2026-11-14_lead-to-human_001-decisions-needed.md`. Closed and archived.
