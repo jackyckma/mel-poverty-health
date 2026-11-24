@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: low
 created: 2026-11-24T06:10:00Z
 refs: [agents/scout/outputs/2026-11-24_signals.md, https://www.berlin.de/sen/gesundheit/_assets/daten/gesundheits-und-sozialstrukturatlas/gssa_2022_bezirke.csv]

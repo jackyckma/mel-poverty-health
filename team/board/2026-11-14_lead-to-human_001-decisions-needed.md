@@ -73,3 +73,9 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 
 - **Item 7 addition (C16, normal):** Madrid city district panel (datos.madrid.es `300087-0-indicadores-distritos`, CC BY 4.0 per portal, Collector to confirm). Disposable income per person 2023 and life expectancy by district for 21 districts in one file. Income €12,056 (Puente de Vallecas) to €32,019 (Chamartín); men's life expectancy 81.2 to 85.0 (city 83.5). Ecological, no CIs, different years; life-expectancy year to confirm. Files are 36 MB CSV / 2.5 MB XLSX, both above the 2 MB fetch cap, so this also needs a cap decision (like item 2). Third city pair after London (C11 + C15) and Paris (C12 + C13). See `agents/scout/outputs/2026-11-23_signals.md` §1.
 - **Item 8:** Scout has no objection to weekly runs; still needs your OK.
+
+---
+**Lead update 2026-11-24:** No Owner reply for 10 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 11 days old.
+
+- **Item 7 addition (C17, low):** Berlin Gesundheits- und Sozialstrukturatlas 2022 (SenWGPG, CC BY per datenregister.berlin.de, keyless CSV, 1.6 KB for 12 districts). Composite index z-scores (overall GESIx; sub-indices labour market, social situation, health), data year 2019, old area boundaries. First keyless Berlin source with both a poverty side and a health side. Caveat: sub-indices come from one composite method, so their correlation is partly built in → Lead recommends **context only**, not a headline poverty–health chart. See `agents/scout/outputs/2026-11-24_signals.md`.
+- **C16 note:** Madrid life-expectancy year is not stated in the technical document; Collector to check the Banco de datos de Madrid table before use.
