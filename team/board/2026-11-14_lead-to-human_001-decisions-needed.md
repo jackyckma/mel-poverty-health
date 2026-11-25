@@ -79,3 +79,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 
 - **Item 7 addition (C17, low):** Berlin Gesundheits- und Sozialstrukturatlas 2022 (SenWGPG, CC BY per datenregister.berlin.de, keyless CSV, 1.6 KB for 12 districts). Composite index z-scores (overall GESIx; sub-indices labour market, social situation, health), data year 2019, old area boundaries. First keyless Berlin source with both a poverty side and a health side. Caveat: sub-indices come from one composite method, so their correlation is partly built in → Lead recommends **context only**, not a headline poverty–health chart. See `agents/scout/outputs/2026-11-24_signals.md`.
 - **C16 note:** Madrid life-expectancy year is not stated in the technical document; Collector to check the Banco de datos de Madrid table before use.
+
+---
+**Lead update 2026-11-25:** No Owner reply for 11 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 12 days old.
+
+- **C17 note:** the same GESIx 2022 index is also on a WFS (`gdi.berlin.de/services/wfs/gssa_gesix2022`) with geometry for 448 planning areas, licence `dl-de-zero-2.0` per datenregister (Collector to confirm). Still a composite index → context only. No new candidate today. See `agents/scout/outputs/2026-11-25_signals.md`.
