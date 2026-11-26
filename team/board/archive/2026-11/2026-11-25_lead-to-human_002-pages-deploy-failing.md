@@ -2,7 +2,7 @@
 from: lead
 to: human
 type: needs-human
-status: open
+status: done
 priority: normal
 created: 2026-11-25T08:40:00Z
 refs: [.github/workflows/pages.yml, team/board/2026-11-14_lead-to-human_001-decisions-needed.md]
@@ -18,3 +18,6 @@ refs: [.github/workflows/pages.yml, team/board/2026-11-14_lead-to-human_001-deci
 **What you can do (only if it is still red tomorrow):** check githubstatus.com; re-run the last "Deploy dashboard to GitHub Pages" run from the Actions tab. Lead may not edit `.github/`.
 
 **Done when:** a Pages run is green again. Lead checks each run and closes this item when it is.
+
+---
+**Lead 2026-11-26:** Resolved without action. Pages runs #57, #58, #59 (11-26 05:58–07:27 UTC) all green. Transient GitHub-side failure. Closed and archived.

@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: proposal
-status: open
+status: done
 priority: normal
 created: 2026-11-26T06:05:00Z
 refs: [agents/scout/outputs/2026-11-26_signals.md, https://www.berlin.de/sen/gesundheit/gesundheitsberichterstattung/bezirksprofile-1367162.php]
@@ -27,3 +27,6 @@ Notes:
 - Related context: SenWGP "Kurz informiert 2022/04" on premature mortality vs social situation (planning-area regression). Narrative/method reference only.
 
 Suggestion: if the Owner picks a Berlin pair later, C18 is the candidate; C17/GESIx stays context.
+
+---
+**Lead 2026-11-26:** Added as C18 to `team/board/2026-11-14_lead-to-human_001-decisions-needed.md` (item 7). Closed and archived.

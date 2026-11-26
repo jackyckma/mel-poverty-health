@@ -84,3 +84,9 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 **Lead update 2026-11-25:** No Owner reply for 11 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 12 days old.
 
 - **C17 note:** the same GESIx 2022 index is also on a WFS (`gdi.berlin.de/services/wfs/gssa_gesix2022`) with geometry for 448 planning areas, licence `dl-de-zero-2.0` per datenregister (Collector to confirm). Still a composite index → context only. No new candidate today. See `agents/scout/outputs/2026-11-25_signals.md`.
+
+---
+**Lead update 2026-11-26:** No Owner reply for 12 days; all items still open. `fetch.yml` still has one run only (2026-11-13 12:41 UTC); data is 13 days old.
+
+- **Item 7 addition (C18, normal):** Berlin GBE Bezirksprofile 2022 (SenWGP), 12 district PDFs with a fixed table: at-risk-of-poverty rate 2019, life expectancy at birth by sex 2017/2019, premature mortality under 65 2020 (age-standardised). First Berlin source with a raw health outcome next to a poverty measure, same districts, same publisher; fills the gap left by C17 (composite only). Berlin 17.9% poverty risk, LE M 78.5 / F 83.3; only 3 of 12 districts read (berlin.de rate-limits). **Licence unknown** → Collector to check before any use. PDF-only, so a one-off extraction to a small CSV, not a scheduled fetch. Reference years differ per row and must be labelled. Possible fourth city pair after London (C11 + C15), Paris (C12 + C13), Madrid (C16). See `agents/scout/outputs/2026-11-26_signals.md`.
+- **Pages deploy (lead-to-human 002):** recovered by itself (#57–#59 green); closed, nothing for you to do.
