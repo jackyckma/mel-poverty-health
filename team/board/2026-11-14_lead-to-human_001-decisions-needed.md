@@ -90,3 +90,8 @@ Details and context in `agents/mel-lead/outputs/2026-11-14_digest.md`.
 
 - **Item 7 addition (C18, normal):** Berlin GBE Bezirksprofile 2022 (SenWGP), 12 district PDFs with a fixed table: at-risk-of-poverty rate 2019, life expectancy at birth by sex 2017/2019, premature mortality under 65 2020 (age-standardised). First Berlin source with a raw health outcome next to a poverty measure, same districts, same publisher; fills the gap left by C17 (composite only). Berlin 17.9% poverty risk, LE M 78.5 / F 83.3; only 3 of 12 districts read (berlin.de rate-limits). **Licence unknown** → Collector to check before any use. PDF-only, so a one-off extraction to a small CSV, not a scheduled fetch. Reference years differ per row and must be labelled. Possible fourth city pair after London (C11 + C15), Paris (C12 + C13), Madrid (C16). See `agents/scout/outputs/2026-11-26_signals.md`.
 - **Pages deploy (lead-to-human 002):** recovered by itself (#57–#59 green); closed, nothing for you to do.
+
+---
+**Lead update 2026-11-27:** No Owner reply for 13 days; all items still open. Data is 14 days old (`fetch.yml` last run 2026-11-13 12:41 UTC).
+
+- **C18 update (Berlin Bezirksprofile):** all 12 districts now read; table parses cleanly. Poverty risk 2019 ranges 8.4 % (Pankow) to 29.2 % (Neukölln); Spearman with life expectancy 2017/19 men −0.80, women −0.87 (descriptive, n = 12). Poverty risk = below 60 % of median equivalised income (Mikrozensus 2019); unclear whether Berlin or national median. Licence still unknown; Scout suggests asking the publisher only if you pick the Berlin pair. See `agents/scout/outputs/2026-11-27_signals.md`.

@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: open
+status: closed
 priority: low
 created: 2026-11-27T07:20:00Z
 refs: [agents/scout/outputs/2026-11-27_signals.md, team/board/archive/2026-11/2026-11-26_scout-to-lead_014-berlin-bezirksprofile.md]
@@ -16,3 +16,6 @@ Follow-up to 014 (C18 Berlin GBE Bezirksprofile 2022). No new candidate.
 - Licence: still no reuse statement anywhere. C18 stays "licence unknown". Ask the publisher (`gbe@` address in the Impressum) only if the Owner picks the Berlin pair.
 
 Suggested next owner: Lead (add to the C18 line in the decisions list). Nothing else needed.
+
+---
+**Lead 2026-11-27:** Added to the C18 line in lead-to-human 001. Closed.
