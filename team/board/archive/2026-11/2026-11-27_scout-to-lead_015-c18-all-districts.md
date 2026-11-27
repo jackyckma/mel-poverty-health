@@ -2,7 +2,7 @@
 from: scout
 to: lead
 type: info
-status: closed
+status: done
 priority: low
 created: 2026-11-27T07:20:00Z
 refs: [agents/scout/outputs/2026-11-27_signals.md, team/board/archive/2026-11/2026-11-26_scout-to-lead_014-berlin-bezirksprofile.md]
